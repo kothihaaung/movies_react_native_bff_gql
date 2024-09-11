@@ -1,0 +1,18 @@
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/nkf-0.2.0/ext/nkf
+/Users/thihathedev/.rvm/rubies/ruby-3.3.0/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/nkf-0.2.0/ext/nkf
+make DESTDIR\= sitearchdir\=./.gem.20240823-55718-byl4nd sitelibdir\=./.gem.20240823-55718-byl4nd clean
+
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/nkf-0.2.0/ext/nkf
+make DESTDIR\= sitearchdir\=./.gem.20240823-55718-byl4nd sitelibdir\=./.gem.20240823-55718-byl4nd
+compiling nkf.c
+linking shared-object nkf.bundle
+
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/nkf-0.2.0/ext/nkf
+make DESTDIR\= sitearchdir\=./.gem.20240823-55718-byl4nd sitelibdir\=./.gem.20240823-55718-byl4nd install
+/opt/homebrew/opt/coreutils/bin/ginstall -c -m 0755 nkf.bundle ./.gem.20240823-55718-byl4nd
+
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/nkf-0.2.0/ext/nkf
+make DESTDIR\= sitearchdir\=./.gem.20240823-55718-byl4nd sitelibdir\=./.gem.20240823-55718-byl4nd clean

@@ -1,0 +1,20 @@
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/strscan-3.1.0/ext/strscan
+/Users/thihathedev/.rvm/rubies/ruby-3.3.0/bin/ruby extconf.rb
+checking for onig_region_memsize() in ruby.h... yes
+checking for rb_reg_onig_match() in ruby.h... yes
+creating Makefile
+
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240823-55718-o4sskr sitelibdir\=./.gem.20240823-55718-o4sskr clean
+
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240823-55718-o4sskr sitelibdir\=./.gem.20240823-55718-o4sskr
+compiling strscan.c
+linking shared-object strscan.bundle
+
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240823-55718-o4sskr sitelibdir\=./.gem.20240823-55718-o4sskr install
+/opt/homebrew/opt/coreutils/bin/ginstall -c -m 0755 strscan.bundle ./.gem.20240823-55718-o4sskr
+
+current directory: /Users/thihathedev/Documents/dev/learn/react_native/movies/vendor/bundle/ruby/3.3.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240823-55718-o4sskr sitelibdir\=./.gem.20240823-55718-o4sskr clean
