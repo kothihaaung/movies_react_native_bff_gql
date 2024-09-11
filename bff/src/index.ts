@@ -8,6 +8,7 @@ const typeDefs = `#graphql
   type Movie {
     id: Int
     title: String
+    overview: String
     poster_path: String
   }
 
@@ -22,8 +23,8 @@ const ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNGYzZWQ3YjA0NjY1NWM0NzRmM
 interface Movie {
     id: number;
     title: string;
-    overview: string;
-    // Add other properties as needed
+    overview: String;
+    poster_path: string;
 }
 
 interface ApiResponse {

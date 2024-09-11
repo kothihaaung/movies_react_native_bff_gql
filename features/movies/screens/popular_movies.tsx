@@ -4,17 +4,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMoviesRequest, fetchMoviesSuccess, fetchMoviesFailure } from '../movies_action';
 import { Movie } from '../movie';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { gql, useQuery } from '@apollo/client';
+
+const CHAPTERS_QUERY = gql`
+    query GetPopularMovies {
+        popularMovies {
+            id
+            title
+            overview
+            poster_path
+        }
+    }
+`;
 
 // Type for the Redux state
 interface MoviesState {
     movies: {
         movies: Movie[];
-        loading: boolean;
+        fetchingMovies: boolean;
         error: string | null;
     };
 }
-
-const ACCESS_TOKEN = '';
 
 type RootStackParamList = {
     Tabs: undefined;
@@ -26,45 +36,26 @@ type PopularMoviesScreenNavigationProp = StackNavigationProp<RootStackParamList,
 
 // Define the props type for PopularMoviesScreen
 type Props = {
-  navigation: PopularMoviesScreenNavigationProp;
+    navigation: PopularMoviesScreenNavigationProp;
 };
 
 const PopularMoviesScreen: React.FC<Props> = ({ navigation }) => {
+    const { data, loading, error: gqlError } = useQuery(CHAPTERS_QUERY);
+    const { movies, fetchingMovies, error } = useSelector((state: MoviesState) => state.movies);
     const dispatch = useDispatch();
-    const { movies, loading, error } = useSelector((state: MoviesState) => state.movies);
-
-    // OnPress
-    // navigate for detail screen
-    const handlePress = (item: Movie) => {
-        navigation.navigate('MovieDetail', { item: item })
-    }
 
     useEffect(() => {
-        const fetchMovies = async () => {
+        if (loading) {
             dispatch(fetchMoviesRequest());
-            try {
-                const response = await fetch(
-                    'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc',
-                    {
-                        headers: {
-                            Authorization: `Bearer ${ACCESS_TOKEN}`, // Replace with your actual access token
-                        },
-                    }
-                );
+        } else if (data) {
+            dispatch(fetchMoviesSuccess(data.popularMovies));
+        } else if (gqlError) {
+            console.log('error: gql: ' + gqlError)
+            dispatch(fetchMoviesFailure(gqlError.message));
+        }
+    }, [loading, data, gqlError, dispatch]);
 
-                const data = await response.json();
-                dispatch(fetchMoviesSuccess(data.results));
-
-            } catch (error) {
-                dispatch(fetchMoviesFailure('Error fetching data'));
-            }
-        };
-
-        fetchMovies();
-
-    }, [dispatch]);
-
-    if (loading) {
+    if (fetchingMovies) {
         return (
             <SafeAreaView style={styles.safeArea}>
                 <View style={styles.loadingContainer}>
@@ -84,6 +75,10 @@ const PopularMoviesScreen: React.FC<Props> = ({ navigation }) => {
         );
     }
 
+    const handlePress = (item: Movie) => {
+        navigation.navigate('MovieDetail', { item });
+    };
+
     const renderItem = ({ item }: { item: Movie }) => (
         <TouchableOpacity style={styles.gridItem} onPress={() => handlePress(item)}>
             <Image
@@ -100,8 +95,8 @@ const PopularMoviesScreen: React.FC<Props> = ({ navigation }) => {
                 data={movies}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={renderItem}
-                numColumns={2} // Set number of columns in grid
-                columnWrapperStyle={styles.columnWrapper} // Style for spacing between columns
+                numColumns={2}
+                columnWrapperStyle={styles.columnWrapper}
             />
         </SafeAreaView>
     );
@@ -110,7 +105,7 @@ const PopularMoviesScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        paddingTop: 16, // Padding at the top of the safe area
+        paddingTop: 16,
         backgroundColor: '#000',
     },
     gridItem: {
@@ -121,11 +116,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         padding: 0,
         borderRadius: 10,
-    },
-    movieContainer: {
-        flex: 1,
-        margin: 8, // Margin around each movie item
-        alignItems: 'center',
     },
     poster: {
         width: 160,

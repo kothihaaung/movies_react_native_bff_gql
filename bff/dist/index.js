@@ -7,6 +7,7 @@ const typeDefs = `#graphql
   type Movie {
     id: Int
     title: String
+    overview: String
     poster_path: String
   }
 

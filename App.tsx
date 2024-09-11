@@ -6,17 +6,7 @@
  */
 
 import React from 'react';
-import type { PropsWithChildren } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
+import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -27,6 +17,12 @@ import { store } from './features/store';
 import { createStackNavigator } from '@react-navigation/stack';
 import MovieDetailScreen from './features/movies/screens/movie_detail';
 import { Movie } from './features/movies/movie';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000', // The URL of your Apollo Server
+  cache: new InMemoryCache(),
+});
 
 // Data for dynamic tabs
 const tabsData = [
@@ -47,16 +43,18 @@ const initialMovie: Movie = {
 function App(): React.JSX.Element {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Tabs" component={Tabs} />
-          <Stack.Screen 
-            name="MovieDetail"
-            component={MovieDetailScreen}
-            initialParams={{ item: initialMovie }} 
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ApolloProvider client={client}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Tabs" component={Tabs} />
+            <Stack.Screen 
+              name="MovieDetail"
+              component={MovieDetailScreen}
+              initialParams={{ item: initialMovie }} 
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ApolloProvider>
     </Provider>
   );
 }
