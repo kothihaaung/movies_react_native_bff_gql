@@ -14,7 +14,7 @@ interface MoviesState {
     };
 }
 
-const ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNGYzZWQ3YjA0NjY1NWM0NzRmMzM5OGFhYjQxMjY3ZCIsIm5iZiI6MTcyNDIxMDQ2NC4zMDc4OCwic3ViIjoiNjA0YWUwMTY5MGI4N2UwMDU4ZWU0YTQ0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.Hcayqbgrx070hgnacNfTfgaFyirzFyq4OVmwMONV-1w';
+const ACCESS_TOKEN = '';
 
 type RootStackParamList = {
     Tabs: undefined;
