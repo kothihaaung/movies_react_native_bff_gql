@@ -1,4 +1,6 @@
-# React Native sample project based on TMDB API
+# React Native sample project based on TMDB API with BFF
+This project used Apollo based BFF (backend for front end) gql server to connect with Apollo gql client inside the app.
+
 This sample project use TMDB API.
 It is required API access token to run the project. You can get [it from here](https://developer.themoviedb.org/v4/reference/intro/getting-started).
 
@@ -12,6 +14,15 @@ It is required API access token to run the project. You can get [it from here](h
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
+
+## Start BFF server
+
+Got to the `bff` folder to start the BFF server.
+```bash
+npm start
+```
+
+And go back to root and run the react native app.
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
